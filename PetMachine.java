@@ -37,5 +37,23 @@ public class PetMachine {
         shampoo += 2;
     }
 
+    public int getShampoo() {
+        return shampoo;
+    }
 
+    public int getWater() {
+        return water;
+    }
+
+    public boolean hasPet(){
+        return pet != null;
+
+    }
+
+    public void setPet(Pet pet) {
+        if (this.pet != null){
+            System.out.println();
+        }
+        this.pet = pet;
+    }
 }
