@@ -51,9 +51,29 @@ public class PetMachine {
     }
 
     public void setPet(Pet pet) {
-        if (this.pet != null){
-            System.out.println();
+        if (!this.clean){
+            System.out.println("A máquina está suja");
+            return;
+        }
+
+
+        if (hasPet()){
+            System.out.println("O pet " + this.pet.getName() + " está na máquina nesse momento");
+            return;
         }
         this.pet = pet;
+    }
+
+    public void removePet(){
+        this.clean = this.pet.isClean();
+        System.out.println("O pet " + this.pet.getName() + " está limpo");
+        this.pet = null;
+    }
+
+    public void wash(){
+        this.water -= 10;
+        this.shampoo -= 2;
+        this.clean = true;
+
     }
 }
