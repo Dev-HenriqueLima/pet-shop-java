@@ -2,9 +2,12 @@ import java.util.Scanner;
 
 public class Main {
 
+    private final static Scanner scanner = new Scanner(System.in);
+
+    private final static PetMachine petMachine = new PetMachine();
+
     public static void main(String[] args) {
-        var scanner = new Scanner(System.in);
-        var option = -1;
+                var option = -1;
 
         do {
             System.out.println(">>>>Escolha uma das opções<<<<");
@@ -20,11 +23,35 @@ public class Main {
             System.out.println("0 - Sair");
             option = scanner.nextInt();
 
+            switch (option){
+                case 5 -> {
+                    var amount = petMachine.getShampoo();
+                    System.out.println("A máquina está no momento com" + amount "litro(s) de Shampoo");
+                }
+                case 6 -> checkIFHasPetInMachine();
+                case 7 -> setPetInPetmachine();
+                case 8 -> petMachine.removePet();
+                case 9 -> petMachine.wash();
+            }
+
         } while (option != 0);
 
     }
 
-    public void setPetInPetmachine(){
-        System.out.println("");
+    private static void checkIFHasPetInMachine() {
+        var hasPet = petMachine.hasPet();
+        System.out.println(hasPet ? "Tem pet na máquina" : "Não tem pet na máquina");
+    }
+
+    public static void setPetInPetmachine(){
+        var name = "";
+        while (name == null || name.isEmpty()){
+            System.out.println("Informe o Nome do pet");
+            name = scanner.next();
+        }
+                var name = scanner.next();
+        var pet = new Pet(name);
+        petMachine.setPet(pet);
+        System.out.println("O pet" + pet.getName() + "foi colocado na máquina");
     }
 }
