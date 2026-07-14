@@ -12,46 +12,72 @@ public class Main {
         do {
             System.out.println(">>>>Escolha uma das opções<<<<");
             System.out.println("1 - Dar banho no Pet");
-            System.out.println("2 - Abastecer a máquina com água");
-            System.out.println("3 - Abastecer a máquina com shampoo");
-            System.out.println("4 - Verificar a água da máquina");
-            System.out.println("5 - Verifica o shampoo da máquina");
-            System.out.println("6 - Verificar se tem pet no banho");
-            System.out.println("7 - Colocar Pet na máquina");
-            System.out.println("8 - Retirar pet da máquina");
-            System.out.println("9 - Limpar máquina");
-            System.out.println("0 - Sair");
+            System.out.println("2 - Abastecer a máquina com água ");
+            System.out.println("3 - Abastecer a máquina com shampoo ");
+            System.out.println("4 - Verificar a água da máquina ");
+            System.out.println("5 - Verifica o shampoo da máquina ");
+            System.out.println("6 - Verificar se tem pet no banho ");
+            System.out.println("7 - Colocar Pet na máquina ");
+            System.out.println("8 - Retirar pet da máquina ");
+            System.out.println("9 - Limpar máquina ");
+            System.out.println("0 - Sair ");
             option = scanner.nextInt();
 
             switch (option){
-                case 5 -> {
-                    var amount = petMachine.getShampoo();
-                    System.out.println("A máquina está no momento com" + amount "litro(s) de Shampoo");
-                }
+                case 1 -> petMachine.takeAShower();
+                case 2 -> setWater();
+                case 3 -> setShampoo();
+                case 4 -> verifyWater();
+                case 5 -> verifyShampoo();
                 case 6 -> checkIFHasPetInMachine();
-                case 7 -> setPetInPetmachine();
+                case 7 -> setPetInPetMachine();
                 case 8 -> petMachine.removePet();
                 case 9 -> petMachine.wash();
+                case 0 -> System.exit(0);
+                default -> System.out.println("Opção inválida");
             }
 
         } while (option != 0);
 
     }
 
-    private static void checkIFHasPetInMachine() {
-        var hasPet = petMachine.hasPet();
-        System.out.println(hasPet ? "Tem pet na máquina" : "Não tem pet na máquina");
+    private static void setWater(){
+        System.out.println("Tentando colocar água na máquina");
+        petMachine.addWater();
+
     }
 
-    public static void setPetInPetmachine(){
+    private static void setShampoo(){
+        System.out.println("Tentando colocar Shampoo na máquina");
+        petMachine.addShampoo();
+
+    }
+
+
+    private static void verifyWater() {
+        var amount = petMachine.getWater();
+        System.out.println("A máquina está no momento com" + amount + "litro(s) de Água");
+    }
+
+    private static void verifyShampoo() {
+        var amount = petMachine.getShampoo();
+        System.out.println("A máquina está no momento com " + amount + "litro(s) de Shampoo ");
+    }
+
+    private static void checkIFHasPetInMachine() {
+        var hasPet = petMachine.hasPet();
+        System.out.println(hasPet ? "Tem pet na máquina " : "Não tem pet na máquina ");
+    }
+
+    public static void setPetInPetMachine(){
         var name = "";
-        while (name == null || name.isEmpty()){
+        while (name.isEmpty()) {
             System.out.println("Informe o Nome do pet");
             name = scanner.next();
         }
-                var name = scanner.next();
+
         var pet = new Pet(name);
         petMachine.setPet(pet);
-        System.out.println("O pet" + pet.getName() + "foi colocado na máquina");
+        System.out.println(" O pet " + pet.getName() + " foi colocado na máquina ");
     }
 }
